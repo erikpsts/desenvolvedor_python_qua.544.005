@@ -1,61 +1,53 @@
-# O usuário deverá escolher a sala do filme desejado. Se tiver a idade mínima, o programa imprime o ingresso e encerra. Senão, o programa impede a entrada do usuário e retorna a lista para que o mesmo possa escolher outro filme.
-
-# 5 Salas de filme.
-# Idade mínima de 16 anos.
-# Se for maior que 16 anos, o igresso imprime e finaliza.
-# Se não, o programa não imprime o ingresso e retorna pra lista de salas de filmes.
+# O cliente não deseja saber como foi feito. Apenas se foi feito.
+# Import a biblioteca os para limpar a tela do terminal
 import os
-os.system('cls')
 
+# Limpa a tela do terminal
+os.system('cls' if os.name == 'nt' else 'clear')
+
+# Dados do usuário
 nome = input("Informe seu nome: ").strip().title()
-idade = input("Informe seu idade: ").strip().lower()
+idade = int(input("Informe sua idade: ").strip())
+idade_minima = None
 
 os.system('cls')
 
+# loop para exibir o menu de filmes e verificar a idade do usuário
 while True:
+    # menu de filmes
     print(f"{'-'*20} FILMES EM CARTAZ - KINOPLEX {'-'*20}")
-    print("1 - Obsession [18+]")
-    print("2 - A empregada [16+]")
-    print("3 - Dentro da Baleia [14+]")
-    print("4 - Zootopia [12+]")
-    print("5 - Minions 3 [L]")
+    print("Sala 1 - Obsession [18+]")
+    print("Sala 2 - A empregada [16+]")
+    print("Sala 3 - Dentro da Baleia [14+]")
+    print("Sala 4 - Zootopia [12+]")
+    print("Sala 5 - Minions 3 [L]")
 
-    try:
-        filme = int(input("Digite o número que representa o filme desejado: "))
-        match filme: 
-            case 1: 
-                if idade >= 18:
-                    print("Bom filme! Apresente o ingresso na sala 01. ")
-                else:
-                    print("Idade fora da faixa recomendada.")
-            case 2:
-                if idade >= 16:
-                    print("Bom filme! Apresente o ingresso na sala 02.")
-                else: 
-                    print("Idade fora da faixa recomendada.")
-            case 3:
-                if idade >= 14:
-                    print("Bom filme! Apresente o ingresso na sala 03.")
-                else:
-                    print("Idade fora da faixa recomendada.")
-            case 4:
-                if idade >= 12:
-                    print("Bom filme! Apresente o ingresso na sala 04.")
-                else:
-                    print("Idade fora da faixa recomendada.")
-            case 5:
-                if idade >= 0:
-                    print("Bom filme! Apresente o ingresso na sala 5.")
-                else:
-                    print("Idade fora da faixa recomendada.")
-            case _:
-                print("O filme não está no catálogo.")
-        pergunta = (input("Digite 'sim' para escolher o filme novamente e qualquer outra coisa para encerrar. "))
+    # Sala desejada pelo usuário
+    sala = input("Digite o número da sala desejada: ").strip()
 
-        if pergunta == 'sim':
-            os.system('cls')
-            continue
-        else:
-            break
-    except Exception as e:
-        print(f"Deu erro {e}.")
+    # atribui a idade mínima do filme
+    match sala: 
+        case "1": 
+            idade_minima = 18
+        case "2":
+            idade_minima = 16
+        case "3":
+            idade_minima = 14
+        case "4":
+            idade_minima = 12
+        case "5":
+            idade_minima = 0
+        case _:
+            print("O filme não está no catálogo.")
+            idade_minima = idade + 1
+    # Verifica a idade do usuário e imprime o ingresso se ele for maior ou igual a idade mínima
+    if idade >= idade_minima:
+        print(f"Ingresso impresso para {nome}.")  
+        print("Tenha um bom filme!")  
+        break
+    else:
+        print(f"Ingresso negado para {nome}.")
+        print(f"Você não atende aos requisitos de idade para este filme.")
+        print(f"Por favor, escolha outro filme: ")
+        os.system('cls' if os.name == 'nt' else 'clear')
+        continue 

@@ -1,25 +1,22 @@
-# TODO: Atividade 01
-'''
-Crie um programa que receba o nome, a massa em kg e a altura em metros do usuário, calcule seu IMC (indice de massa corporal) e finalize informando o diagnóstico do usuário com base no valor do IMC (se está abaixo do peso, sobrepeso, no peso ideal...)
-'''
 nome = str(input("Digite o seu nome: ")).strip().title()
-massa = float(input("Digite seu peso: "))
-altura = float(input("Digite a sua altura "))
+massa = float(input("Digite seu peso: ").replace(",", "."))
+altura = float(input("Digite a sua altura: ").replace(",", "."))
 
-imc = massa / (altura ** 2)
-try:
-    if imc <= 18.5:
-        print(f"Abaixo do peso. IMC de: {imc}")
-    elif imc >= 18.5 and imc < 29.4:
-        print(f"Peso ideal. IMC de: {imc}")
-    elif imc >= 25.0 and imc < 29.9:
-        print(f"Sobrepeso. IMC de: {imc}")
-    elif imc >= 29.9 and imc < 34.9:
-        print(f"Obesidade grau 1. IMC de: {imc}")
-    elif imc >= 34.9 and imc < 45:
-        print(f"Obesidade grau 2. IMC de: {imc}")
-    else:
-        print(f"Obesidade grau 3. IMC de: {imc}")
+# Calcula o imc do usuário
+imc = massa/(altura**2)
 
-except Exception as e:
-        print(f"Deu erro! {e}")
+# Exibe o valor do IMC com duas casas decimais
+print(f"Olá {nome}, seu IMC é: {imc:.2f}!")
+
+if imc < 18.5:
+    print(f"Abaixo da massa.")
+elif imc < 25.0:
+    print(f"Massa ideal.")
+elif imc < 30.0:
+    print(f"Você está com a massa acima do normal.")
+elif imc < 35.0:
+    print(f"Obesidade grau 1.")
+elif imc < 40.0:
+    print(f"Obesidade grau 2.")
+else:
+    print(f"Obesidade grau 3.")
