@@ -1,4 +1,4 @@
-# TODO: parte 02 atividade 01
+# Feito: parte 02 atividade 01
 """
 Crie um programa que faça as seguintes operações:
 - Cadastra novo usuário (nome, email, telefone, cpf)
@@ -30,7 +30,9 @@ while True:
     print("7 - Sair do programa") # Feito
     opcao = input("Opção desejada: ").strip()
     os.system("cls" if os.name == "nt" else "clear")
+
     match opcao:
+
         # (cadastra novo usuário) (Feito)
         case "1":
             # novo dicionário
@@ -49,6 +51,7 @@ while True:
             # mensagem de confirmação
             print(f"{usuario.get('nome')} cadastro com sucesso!")
             continue
+
         # Listar usuários (Feito)
         case "2":
             # exibe os usuários cadastrados
@@ -79,6 +82,7 @@ while True:
             else:
                 os.system("cls" if os.name == "nt" else "clear")
                 break
+
         # Alterar dados de um usuário ( Feito e dá pra melhorar )
         case "3":
             os.system("cls" if os.name == "nt" else "clear")
@@ -96,6 +100,7 @@ while True:
             except Exception as e:
                 print(f"Não foi possível abrir o arquivo. {e}.")
             continue
+
         # Excluir um usuário ( Feito )
         case "4":
             # Exibe a lista original
@@ -112,6 +117,7 @@ while True:
             for chave, valor in usuario.items():
                 print(f"{chave}: {valor}")
             pass
+
         # Gravar arquivo JSON (Feito)
         case "5":
             # exibe os usuários cadastrados
@@ -131,6 +137,7 @@ while True:
             else:
                 os.system("cls" if os.name == "nt" else "clear")
                 continue
+
         # Abrir novo arquivo JSON (Feito)
         case "6":
             os.system("cls" if os.name == "nt" else "clear")
@@ -140,9 +147,11 @@ while True:
             # exibe o arquivo na tela
             print(texto)
             continue
+
         # Sair do programa (Feito)
         case "7":
             break
+
         case _:
             print("Opção inválida.")
             continue
