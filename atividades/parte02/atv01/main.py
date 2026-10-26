@@ -23,10 +23,10 @@ while True:
     # menu 
     print("1 - Cadastrar novo usuário") # Feito
     print("2 - Listar usuários") # Feito
-    print("3 - Alterar dados de um usuário") #TODO
-    print("4 - Excluir um usuário") # TODO
+    print("3 - Alterar dados de um usuário") # A melhorar
+    print("4 - Excluir um usuário") # Feito
     print("5 - Gravar arquivo JSON") # Feito
-    print("6 - Abrir arquivo JSON") # Feiro
+    print("6 - Abrir arquivo JSON") # Feito
     print("7 - Sair do programa") # Feito
     opcao = input("Opção desejada: ").strip()
     os.system("cls" if os.name == "nt" else "clear")
@@ -79,19 +79,38 @@ while True:
             else:
                 os.system("cls" if os.name == "nt" else "clear")
                 break
-        # Alterar dados de um usuário ( TODO )
+        # Alterar dados de um usuário ( Feito e dá pra melhorar )
         case "3":
             os.system("cls" if os.name == "nt" else "clear")
             try:
-               # TODO
-               pass
+                # Informa o nome da chave
+                chave_escolhida = input("Informe o nome da chave que deseja alterar ou Enter para encerrar:").strip().lower()
+                # Verifica se a chave é válida
+                if chave_escolhida:
+                # Informa o novo valor
+                    usuario[chave_escolhida] = input("Informe o novo valor: ").strip()
+                    print("Valor alterado com sucesso!")
+                    continue
+                else:
+                    break
             except Exception as e:
                 print(f"Não foi possível abrir o arquivo. {e}.")
             continue
-        # Excluir um usuário ( TODO )
+        # Excluir um usuário ( Feito )
         case "4":
-            del usuarios 
-            # TODO
+            # Exibe a lista original
+            for chave, valor in usuario.items():
+                print(f"{chave}: {valor}")
+
+            # Informa a chave a ser deletada
+            chave_escolhida = input("Informe a chave a excluir: ").strip().lower()
+
+            # Deleta a chave
+            del usuario[chave_escolhida]
+
+            # re-exibe o novo dicionário
+            for chave, valor in usuario.items():
+                print(f"{chave}: {valor}")
             pass
         # Gravar arquivo JSON (Feito)
         case "5":
@@ -105,7 +124,7 @@ while True:
             if prosseguir == "s":
                 os.system("cls" if os.name == "nt" else "clear")
                 arquivo = input("Informe o nome do arquivo: ").strip()
-                with open(f"16_JSON/{arquivo}.json","w",encoding="utf-8") as f:
+                with open(f"atv01/{arquivo}.json","w",encoding="utf-8") as f:
                     json.dump(usuarios, f)
                 print("Arquivo json gravado com sucesso!")
                 continue
