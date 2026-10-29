@@ -10,6 +10,6 @@ def limpar():
 
 
 # algoritmo principal
-limpar()
+limpar() 
 nome = input("Informe seu nome: ").strip().title()
 boas_vindas(nome)
